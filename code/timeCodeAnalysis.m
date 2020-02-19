@@ -2,7 +2,7 @@ close all
 clear all
 clc
 
-data = audioread('FinalTest2-5Mins.wav');
+data = audioread('Test2.wav');
 % remove initial fluctuations
 data = data(200:end,:);
 
