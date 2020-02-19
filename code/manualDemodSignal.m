@@ -8,7 +8,7 @@ data = audioread('Test1.wav');
 dataChan1 = data(:,1);
 dataChan2 = data(:,2);
 [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan1);
-
+csvwrite('binaryStream.csv',binaryStream)
 
 function [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan)
     dataChan(dataChan>0)=1;
@@ -34,3 +34,4 @@ function [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan)
         i = endIndex+1;
     end
 end
+
