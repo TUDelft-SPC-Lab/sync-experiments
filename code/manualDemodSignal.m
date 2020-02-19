@@ -8,6 +8,9 @@ data = audioread('Test1.wav');
 dataChan1 = data(:,1);
 dataChan2 = data(:,2);
 [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan1);
+% syncwordIdxStart = findSyncWord(binaryStream);
+% syncWord = '0011111111111101';
+% binaryStream = binaryStream((syncwordIdxStart(1)+length(syncWord)):end);
 csvwrite('binaryStream.csv',binaryStream)
 
 function [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan)
@@ -33,5 +36,11 @@ function [shiftedDataChan,shift,binaryStream] = processRawSignal(dataChan)
         end
         i = endIndex+1;
     end
+end
+
+%% finding the sync word
+function [idxStart] = findSyncWord(arr,syncWord)
+    arr = sprintf('%i',arr);
+    idxStart = strfind(arr,syncWord);
 end
 
