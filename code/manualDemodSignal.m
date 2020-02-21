@@ -5,16 +5,18 @@ close all
 rng(1)
 
 data = audioread('run1.wav');
-dataChan1 = data((192000*5+1):192000*6,1);
-
-dataChan1(dataChan1>0)=1;
+dataChan1 = data(:,1);
+dataChan1(dataChan1>=0)=1;
 dataChan1(dataChan1<0)=-1;
-idx = find(dataChan1==1,1);
-dataChan1=dataChan1(idx:end);
+idx = find(dataChan1==1);
+dataChan1 = dataChan1(33:(33+192000-1),1);
 
-leftover = mod(length(dataChan1),80);
-dataChan1 = dataChan1(1:(length(dataChan1)-leftover));
 
+% dataChan1=dataChan1(idx:end);
+% 
+% leftover = mod(length(dataChan1),80);
+% dataChan1 = dataChan1(1:(length(dataChan1)-leftover));
+% 
 dataChan1Reshaped = reshape(dataChan1,80,[]);
 dataChan1ReshapedFirst = dataChan1Reshaped(1:40,:)*1;
 dataChan1ReshapedSecond = dataChan1Reshaped(41:end,:)*(-1);
