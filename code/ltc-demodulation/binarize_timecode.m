@@ -1,9 +1,9 @@
 /*
  * File: binarize_timecode.m
  * Created Date: Tuesday, February 25th 2020, 11:46:35 am
- * Author: Chirag Raman
+ * Author: Amelia Villegas
  *
- * Copyright (c) 2020 Chirag Raman
+ * Copyright (c) 2020 Amelia Villegas
  */
 
 
