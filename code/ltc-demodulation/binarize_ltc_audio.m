@@ -17,9 +17,9 @@ function [] = binarize_ltc_audio(audio_file, out_file)
 
         decoded = [];
 
-        while idx < fs-NSAMPSPERBIT
+        while idx < size(data, 1)-NSAMPSPERBIT
             % Check for sign at samples 20 and 60 in the period
-            bit = ~isequal(sign(channel(idx+20)), sign(data_channel(idx+60)));
+            bit = ~isequal(sign(channel(idx+20)), sign(channel(idx+60)));
             decoded = [decoded, bit];
             % Find the peak within a tolerance of 6 samples
             [m, idt] = max(abs(channel(idx+77:idx+83)));
@@ -28,7 +28,7 @@ function [] = binarize_ltc_audio(audio_file, out_file)
 
         % Convert to string and write to disk
         decoded_str = num2str(decoded, '%d');
-        fprintf('%s\n', decoded_str);
+        fprintf(file_handle, '%s\n', decoded_str);
 
         % Sanity check that the frame numbers are the same - python code
         % Find the location of the sync words
